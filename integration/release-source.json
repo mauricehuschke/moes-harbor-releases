@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "status": "PREPARED_NOT_ACTIVE",
+  "repository": "mauricehuschke/moes-harbor-releases",
+  "applicationId": "hybro",
+  "metadataUrl": "https://raw.githubusercontent.com/mauricehuschke/moes-harbor-releases/main/metadata/",
+  "targetsUrl": "https://github.com/mauricehuschke/moes-harbor-releases/releases/download/",
+  "catalogBaseUrl": "https://raw.githubusercontent.com/mauricehuschke/moes-harbor-releases/main/catalog/",
+  "catalogTarget": "catalog.json",
+  "licenseId": "LicenseRef-Moes-Harbor-Freeware-1.0",
+  "root": null,
+  "repositoryId": null
+}
