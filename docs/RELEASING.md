@@ -1,12 +1,26 @@
 # Manual release publication (no GitHub Actions)
 
-The first public release is pending. The Freeware License is selected; Windows
-code-signing identity and reviewed production TUF authority remain required.
-Do not publish unsigned local qualification artifacts.
+## Current owner-approved stage: manual preview
+
+The 2026-11-23 owner decision permits a locally qualified manual Windows preview without TUF or production code signing. The clean build must include the selected license and exact Windows acceptance evidence. Use the private preparation mode manual-preview, not qualification-only output. Publish the exact installer, application archive and SHA256SUMS.txt, clearly labelled Manual preview / unsigned / no TUF. Use a normal versioned GitHub release designated latest to preserve the requested latest links; this GitHub label is not a general-availability claim. Refresh latest.json/README after checking public asset bytes. All production/TUF steps below remain mandatory before broad installer/Vessel availability.
+
+Website changes are made directly through mauricehuschke/moes-harbor-webseite. No billable Lovable requests, website deployment or Actions.
+
+### Manual preview checklist
+
+1. Build the clean licensed package and offline installer, retaining the fixed executable paths. Run Windows acceptance against those exact final bytes and preserve the existing profile.
+2. Prepare with mode manual-preview and the actual license/evidence. Only these reviewed artifacts are eligible; qualification-only output stays private.
+3. Create a draft release and upload exactly the installer, application archive and SHA256SUMS.txt. Match every uploaded size and GitHub SHA-256 digest to the local artifact. Never upload candidate receipts, profiles, maintenance files, private source or keys.
+4. Publish the reviewed manual preview and mark it latest. Keep the title and notes explicit about unsigned Windows binaries, no TUF and no general availability. Never overwrite a published version.
+5. Download public bytes without credentials, compare hashes, then run node scripts/refresh-latest.mjs and node --test tests/*.test.mjs. Merge the exact latest.json and README checksum table through a PR.
+6. Merge the website adapter through its own PR. Its server reads latest.json automatically; no TUF secrets or operator catalog synchronization are needed for this manual path. Check the real versioned download link and preserved unavailable TUF connection state. Website deployment remains separate.
+
+## Future production workflow: before broad availability
+
+The Freeware License is selected. A reviewed Windows code-signing identity and production TUF authority remain required for this later stage. Do not treat the manual preview as production acceptance.
 
 1. In the private source repository, prepare a clean, reviewed build with the
-   root `LICENSE` copied into the package as `HYBRO-LICENSE.txt`. The existing
-   installed qualification build does not contain the newly selected license.
+   root `LICENSE` copied into the package as `HYBRO-LICENSE.txt`. Always verify that the exact package contains the selected license.
    Preserve the user's fixed executable paths and installed profile; do not
    overwrite an owned installation during packaging.
 2. Sign the app and native adapter, build the offline setup, sign setup, and

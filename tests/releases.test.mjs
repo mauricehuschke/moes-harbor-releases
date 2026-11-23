@@ -17,8 +17,11 @@ function fixture() {
 test('published binaries bind exact version, size and GitHub digest to the README', () => {
   const { release, sums } = fixture();
   const record = releaseRecord(release, sums);
+  assert.equal(record.distribution, 'manual-preview');
+  assert.equal(record.verification, 'sha256');
   const result = updateReadme('Before\n<!-- latest:start -->\nPending\n<!-- latest:end -->\nAfter', record);
   assert.match(result, /v1.2.3/);
+  assert.match(result, /not general availability/);
   assert.match(result, /releases\/download\/v1.2.3\/hybro-setup/);
   assert.ok(result.includes('1'.repeat(64)));
   assert.ok(result.startsWith('Before\n') && result.endsWith('\nAfter'));
