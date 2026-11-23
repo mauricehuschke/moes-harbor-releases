@@ -1,0 +1,12 @@
+{
+  "name": "moes-harbor-release-metadata",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "refresh:latest": "node scripts/refresh-latest.mjs"
+  }
+}

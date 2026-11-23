@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.hybro.invalid/distribution/catalog.schema.json",
+  "type": "object", "additionalProperties": false, "required": ["schemaVersion", "items"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "items": {"type": "array", "maxItems": 1000, "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "version", "title", "description", "platform", "architecture", "target", "size", "sha256", "license", "publisher"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9.-]{0,99}$"},
+        "kind": {"enum": ["plugin", "application", "installer"]},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[A-Za-z0-9.-]+)?$"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 100},
+        "description": {"type": "string", "maxLength": 2000},
+        "platform": {"enum": ["win32", "linux", "darwin", "any"]},
+        "architecture": {"enum": ["x64", "arm64", "any"]},
+        "target": {"type": "string", "minLength": 1, "maxLength": 240},
+        "size": {"type": "integer", "minimum": 1, "maximum": 5368709120},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "license": {"type": "string", "minLength": 1, "maxLength": 200},
+        "publisher": {"type": "string", "minLength": 1, "maxLength": 100}
+      }
+    }}
+  }
+}
