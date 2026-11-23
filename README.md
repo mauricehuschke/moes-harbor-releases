@@ -31,7 +31,16 @@ and the matching version's checksums. A checksum detects changed bytes;
 Windows signatures and TUF metadata establish publisher/release trust.
 
 <!-- latest:start -->
-No published manual preview or release checksums yet.
+**Latest manual preview: [v0.1.0](https://github.com/mauricehuschke/moes-harbor-releases/releases/tag/v0.1.0)**
+
+Manual installation only; no TUF verification. This preview is not general availability.
+
+These checksums belong to this exact version; the Latest link may advance.
+
+| Asset | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [hybro-setup-win32-x64.exe](https://github.com/mauricehuschke/moes-harbor-releases/releases/download/v0.1.0/hybro-setup-win32-x64.exe) | 161268441 | `49d95dfba3755740f23beb3f229d32bb866d5c49da5a23fe6c83c68961aaf88e` |
+| [hybro-0.1.0-win32-x64.tgz](https://github.com/mauricehuschke/moes-harbor-releases/releases/download/v0.1.0/hybro-0.1.0-win32-x64.tgz) | 165654364 | `ddc38fb2c38d60b5d72ad90a7e5017a9dbbcc50be9b6d2f74e25651d9b83cd41` |
 <!-- latest:end -->
 
 ## License and use

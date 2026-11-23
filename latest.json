@@ -1,5 +1,26 @@
 {
   "schemaVersion": 1,
-  "status": "AWAITING_FIRST_PUBLIC_RELEASE",
-  "latest": null
+  "status": "PUBLISHED",
+  "distribution": "manual-preview",
+  "verification": "sha256",
+  "latest": {
+    "version": "0.1.0",
+    "tag": "v0.1.0",
+    "releaseUrl": "https://github.com/mauricehuschke/moes-harbor-releases/releases/tag/v0.1.0",
+    "publishedAt": "2026-11-23T15:16:39Z",
+    "assets": [
+      {
+        "name": "hybro-setup-win32-x64.exe",
+        "size": 161268441,
+        "sha256": "49d95dfba3755740f23beb3f229d32bb866d5c49da5a23fe6c83c68961aaf88e",
+        "url": "https://github.com/mauricehuschke/moes-harbor-releases/releases/download/v0.1.0/hybro-setup-win32-x64.exe"
+      },
+      {
+        "name": "hybro-0.1.0-win32-x64.tgz",
+        "size": 165654364,
+        "sha256": "ddc38fb2c38d60b5d72ad90a7e5017a9dbbcc50be9b6d2f74e25651d9b83cd41",
+        "url": "https://github.com/mauricehuschke/moes-harbor-releases/releases/download/v0.1.0/hybro-0.1.0-win32-x64.tgz"
+      }
+    ]
+  }
 }
