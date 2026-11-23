@@ -1,8 +1,10 @@
 # Website and desktop connection
 
-Status: preparation only. No public application release, production TUF root
-or signed catalog exists. The separate Lovable website need not be published
-to configure these locations or test the unavailable state.
+## Manual preview exception (owner decision, 2026-11-23)
+
+The website may display an ordinary HTTPS Windows download from the public latest.json when status is PUBLISHED, distribution is manual-preview and verification is sha256. Validate exact versioned asset URLs, sizes and checksums. Display no TUF verification and the unsigned preview status. This document never creates trusted catalog entries, hybro:// installation links or automatic updates. All trust requirements below still apply to TUF operations and to broad production availability.
+
+TUF status: preparation only; no production TUF root or signed catalog is configured. Manual download availability is independently described by ../latest.json. The separate website need not be publicly deployed to test either state. Its code repository is mauricehuschke/moes-harbor-webseite; changes are locally tested and merged through PRs, without billable Lovable requests.
 
 `release-source.json` is deployment planning data, **not** an importable desktop
 connection. Never import its null root or invent a replacement trust root.
@@ -44,7 +46,7 @@ Latest aliases are human convenience links, never a trusted update decision.
 The website validates TUF freshness, signatures, lengths, hashes and rollback
 state before displaying installable items; it does not sign releases. Missing
 trust, unavailable metadata, identity mismatch or expired metadata means
-downloads remain unavailable. Until configured, `/connection/harbor.json`
+TUF-dependent downloads remain unavailable; the explicit manual preview is separate. Until configured, `/connection/harbor.json`
 returns an unavailable response, not a placeholder connection. Use a maintained
 standard TUF implementation and qualify interoperability before enabling real
 downloads. A working preview alone is not production TUF acceptance.

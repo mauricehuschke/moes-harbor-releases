@@ -21,7 +21,7 @@ export function releaseRecord(release, checksums) {
       !/^v[0-9]+\.[0-9]+\.[0-9]+$/.test(release.tag_name) ||
       release.html_url !== origin + '/releases/tag/' + release.tag_name ||
       !Number.isFinite(Date.parse(release.published_at)) || !Array.isArray(release.assets)) {
-    throw new Error('Expected the published stable release from the configured repository.');
+    throw new Error('Expected the published latest release from the configured repository.');
   }
   const version = release.tag_name.slice(1);
   const expected = ['hybro-setup-win32-x64.exe', 'hybro-' + version + '-win32-x64.tgz'];
@@ -40,17 +40,19 @@ export function releaseRecord(release, checksums) {
         asset.digest !== 'sha256:' + sha256) throw new Error('Missing asset or GitHub/checksum digest mismatch: ' + name);
     return { name, size: asset.size, sha256, url };
   });
-  return { schemaVersion: 1, status: 'PUBLISHED', latest: {
+  return { schemaVersion: 1, status: 'PUBLISHED', distribution: 'manual-preview', verification: 'sha256', latest: {
     version, tag: release.tag_name, releaseUrl: release.html_url,
     publishedAt: release.published_at, assets
   } };
 }
 
 export function renderLatest(record) {
-  if (record.latest === null) return 'No published stable release or release checksums yet.';
+  if (record.latest === null) return 'No published manual preview or release checksums yet.';
   const latest = record.latest;
   return [
-    '**Published stable version: [' + latest.tag + '](' + latest.releaseUrl + ')**',
+    '**Latest manual preview: [' + latest.tag + '](' + latest.releaseUrl + ')**',
+    '',
+    'Manual installation only; no TUF verification. This preview is not general availability.',
     '',
     'These checksums belong to this exact version; the Latest link may advance.',
     '',
@@ -91,7 +93,7 @@ async function main() {
   const directory = fileURLToPath(new URL('../', import.meta.url));
   const json = await fetchText('https://api.github.com/repos/' + repository + '/releases/latest', true);
   if (json === null) {
-    console.log('No published stable release. Existing README and latest.json were left unchanged.');
+    console.log('No published latest release. Existing README and latest.json were left unchanged.');
     return;
   }
   const release = JSON.parse(json);
@@ -109,7 +111,7 @@ async function main() {
   // Review both files together in the publication PR; this command never publishes.
   await fs.writeFile(path.join(directory, 'latest.json'), JSON.stringify(record, null, 2) + '\n');
   await fs.writeFile(readmePath, readme);
-  console.log('Updated display metadata for ' + record.latest.tag + '. TUF remains the release authority.');
+  console.log('Updated display metadata for ' + record.latest.tag + '. Manual preview only; broad distribution still requires TUF.');
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
